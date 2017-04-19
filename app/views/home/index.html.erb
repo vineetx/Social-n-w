@@ -1,0 +1,45 @@
+<!-- Trigger/Open The Modal -->
+<div class="new">
+<button id="myBtn">New Post</button>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p><%= render "posts/form" %></p>
+  </div>
+
+</div>
+
+<div class="col-md-4">
+<div class="profile">
+<div class="container">
+  <%= image_tag(current_user.avatar, :width => '200px') %>
+  <div class="overlay">
+    <div class="text">
+    	<%= current_user.name %></br>
+    	<%= current_user.email %></br>
+    	<%= current_user.about %></br>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="col-md-4">
+<div class= post >
+	<% @posts.each do |post| %>
+		<%= image_tag(post.user.avatar, :width => '20px') %> <%= post.user.name %> added a new photo</br>
+		<strong><%= post.content %></strong></br>
+		<%= image_tag(post.attachment, :width => '150px') %></br>
+		Posted <%= time_ago_in_words(post.created_at) %> ago.</br>
+		<% if post.user.id == current_user.id %>
+			<%= link_to 'Edit', edit_post_path(post) %>
+			<%= link_to 'Delete', post_path(post), method: :delete %></br>
+		<% end %>
+		<% end %>
+</div>
+</div>
