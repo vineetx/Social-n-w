@@ -30,16 +30,23 @@
 
 
 <div class="col-md-4">
-<div class= post >
+<div class="post">
 	<% @posts.each do |post| %>
-		<%= image_tag(post.user.avatar, :width => '20px') %> <%= post.user.name %> added a new photo</br>
+	<div class="poosstt">
+	<%= image_tag(post.user.avatar, :width => '40px') %> <%= post.user.name %>
+	<% if post.attachment? %>
+		 added a new photo</br>
+		 <%= image_tag(post.attachment, :width => '150px') %></br>
+	<% else %>
+		published
+	<% end %>
 		<strong><%= post.content %></strong></br>
-		<%= image_tag(post.attachment, :width => '150px') %></br>
 		Posted <%= time_ago_in_words(post.created_at) %> ago.</br>
 		<% if post.user.id == current_user.id %>
 			<%= link_to 'Edit', edit_post_path(post) %>
 			<%= link_to 'Delete', post_path(post), method: :delete %></br>
 		<% end %>
+		</div></br>
 		<% end %>
 </div>
 </div>
