@@ -5,8 +5,17 @@ class HomeController < ApplicationController
 	end
 
 	def profile
-
 		@user = User.find_by(id: params[:format])
 		
+	end
+
+	def search
+
+		@search = User.find_by(name: params[:search][:Search])
+		if @search
+		redirect_to profile_path(@search.id)
+	else
+		redirect_to root_path
+	end
 	end
 end
