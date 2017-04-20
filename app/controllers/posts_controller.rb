@@ -21,6 +21,16 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def like
+    @post = Post.find_by(id: params[:post])
+    @size = @post.votes_for.size
+    @post.liked_by current_user
+    if @size == @post.votes_for.size  
+      @post.unliked_by current_user
+    end
+    redirect_to root_path
+  end
+
   # POST /posts
   # POST /posts.json
   def create
@@ -32,10 +42,12 @@ class PostsController < ApplicationController
         format.html { redirect_to root_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        flash[:notice] = "Post Failed."
+        format.html { redirect_to root_path }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+    @post.liked_by User.first
   end
 
   # PATCH/PUT /posts/1

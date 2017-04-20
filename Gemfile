@@ -54,3 +54,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
+gem 'acts_as_votable', '~> 0.10.0'
+gem "font-awesome-rails"
