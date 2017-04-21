@@ -15,18 +15,7 @@ Hello <%= current_user.name %>
 </div>
 
 <div class="col-md-4">
-<div class="profile">
-<div class="container">
-  <%= image_tag(current_user.avatar, :width => '200px') %>
-  <div class="overlay">
-    <div class="text">
-    	<%= current_user.name %></br>
-    	<%= current_user.email %></br>
-    	<%= current_user.about %></br>
-    </div>
-  </div>
-</div>
-</div>
+
 </div>
 
 
@@ -34,7 +23,7 @@ Hello <%= current_user.name %>
 <div class="post">
 	<% @posts.each do |post| %>
 	<div class="poosstt">
-	<%= image_tag(post.user.avatar, :width => '40px') %> <%= post.user.name %>
+	<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user.id) %>
 	<% if post.attachment? %>
 		 added a new photo</br>
 		 <%= image_tag(post.attachment, :width => '150px') %></br>

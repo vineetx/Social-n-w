@@ -10,10 +10,6 @@
       <% if user_signed_in? %>
       <%= link_to "Socify", root_path, class: "navbar-brand" %>
       <%= link_to "Profile", profile_path(current_user), class: "navbar-brand" %>
-      <%= form_for(Search.new, url: home_search_path, method: :post) do |f| %>
-      <%= f.text_field :Search %>
-      <%= f.submit%> 
-      <% end %> 
       <% end %>
       
 
@@ -21,12 +17,19 @@
     <div class="collapse navbar-collapse" id="navbar-top">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+        <li><div class="bar">
+            <%= form_for(Search.new, url: home_search_path, method: :post) do |f| %>
+            <%= f.text_field :Search %>
+            <%= f.submit :Search%> </li>
+            <% end %>
+
           <li> <%= link_to 'Edit', edit_user_registration_path %></li>
           <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
         <% else %>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Sign in', user_session_path %></li>
         <% end %>
+        </div>
       </ul>
     </div>
   </div>
