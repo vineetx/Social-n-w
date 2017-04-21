@@ -58,3 +58,4 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem "font-awesome-rails"
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'active_attr', '~> 0.10.0'
+gem "figaro"
