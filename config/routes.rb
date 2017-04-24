@@ -1,4 +1,11 @@
+require 'admin_constraint'
+
 Rails.application.routes.draw do
+  constraints(AdminConstraint.new) do
+    root 'admin/dashboard#index'
+  ActiveAdmin.routes(self)
+end
+
   resources :posts
  
   root 'home#index'
