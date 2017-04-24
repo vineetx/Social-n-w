@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	end
 
 	def profile
-		@user = User.find_by(id: params[:format])
+		@user = User.friendly.find(params[:format])
 		
 	end
 

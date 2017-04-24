@@ -60,3 +60,4 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'active_attr', '~> 0.10.0'
 gem "figaro"
 gem "activeadmin"
+gem 'friendly_id', '~> 5.1.0'

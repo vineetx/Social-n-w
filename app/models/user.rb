@@ -19,4 +19,7 @@ class User < ApplicationRecord
         WelcomeMailer.welcome_send(self).deliver
       end
 
+      extend FriendlyId
+      friendly_id :name, use: :slugged
+
 end
