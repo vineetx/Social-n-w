@@ -20,7 +20,11 @@ Hello <%= current_user.name %>
 
 
 <div class="col-md-4">
+
 <div class="post">
+<% if current_user.date_of_birth.day == Time.now.to_date.day && current_user.date_of_birth.month == Time.now.to_date.month %>
+          <%= image_tag('birthday.jpg', :width => '150px') %>
+          <% end %>
 	<% @posts.each do |post| %>
 	<div class="poosstt">
 	<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user.id) %>
