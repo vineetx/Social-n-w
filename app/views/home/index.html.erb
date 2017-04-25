@@ -1,50 +1,41 @@
 Hello <%= current_user.name %>
-<!-- Trigger/Open The Modal -->
-<div class="new">
-<button id="myBtn">New Post</button>
-</div>
-<!-- The Modal -->
-<div id="myModal" class="modal">
 
-  <!-- Modal content -->
+<div class="new">
+	<button id="myBtn">New Post</button>
+</div>
+<div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <p><%= render "posts/form" %></p>
   </div>
-
 </div>
 
 <div class="col-md-4">
-
 </div>
 
-
 <div class="col-md-4">
-
-<div class="post">
-<% if current_user.date_of_birth.day == Time.now.to_date.day && current_user.date_of_birth.month == Time.now.to_date.month %>
-          <%= image_tag('birthday.jpg', :width => '150px') %>
-          <% end %>
-	<% @posts.each do |post| %>
-	<div class="poosstt">
-	<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user) %>
-	<% if post.attachment? %>
-		 added a new photo</br>
-		 <%= image_tag(post.attachment, :width => '150px') %></br>
-	<% else %>
-		published
-	<% end %>
-		<strong><%= post.content %></strong></br>
-		 <%= time_ago_in_words(post.created_at) %> ago.</br>
-		<% if post.user.id == current_user.id %>
-			<%= link_to 'Edit', edit_post_path(post) %>
-			<%= link_to 'Delete', post_path(post), method: :delete %></br>
-		<% end %>
-		<%= link_to "",{:controller =>'posts', :action =>'like',params: {post: post}}, :class=>"fa fa-thumbs-o-up"%>
-		<%= post.votes_for.size %>
-
-
+	<div class="post">
+		<% if current_user.date_of_birth.day == Time.now.to_date.day && current_user.date_of_birth.month == Time.now.to_date.month %>
+        <%= image_tag('birthday.jpg', :width => '150px') %>
+        <% end %>
+		<% @posts.each do |post| %>
+		<div class="poosstt">
+			<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user) %>
+			<% if post.attachment? %>
+		 		added a new photo</br>
+		 		<%= image_tag(post.attachment, :width => '150px') %></br>
+			<% else %>
+				published
+			<% end %>
+			<strong><%= post.content %></strong></br>
+		 	<%= time_ago_in_words(post.created_at) %> ago.</br>
+			<% if post.user.id == current_user.id %>
+				<%= link_to 'Edit', edit_post_path(post) %>
+				<%= link_to 'Delete', post_path(post), method: :delete %></br>
+			<% end %>
+			<%= link_to "",{:controller =>'posts', :action =>'like',params: {post: post}}, :class=>"fa fa-thumbs-o-up"%>
+			<%= post.votes_for.size %>
 		</div></br>
 		<% end %>
-</div>
+	</div>
 </div>

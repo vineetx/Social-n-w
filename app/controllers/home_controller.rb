@@ -9,12 +9,12 @@ class HomeController < ApplicationController
 	end
 
 	def search
-
 		@search = User.find_by(name: params[:search][:Search])
 		if @search
-		redirect_to profile_path(@search.id)
-	else
-		redirect_to root_path
+			redirect_to profile_path(@search.id)
+		else
+			redirect_to root_path
+		end
 	end
-	end
+
 end
