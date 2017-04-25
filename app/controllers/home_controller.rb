@@ -6,7 +6,6 @@ class HomeController < ApplicationController
 
 	def profile
 		@user = User.friendly.find(params[:format])
-		
 	end
 
 	def search

@@ -27,7 +27,7 @@ Hello <%= current_user.name %>
           <% end %>
 	<% @posts.each do |post| %>
 	<div class="poosstt">
-	<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user.id) %>
+	<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user) %>
 	<% if post.attachment? %>
 		 added a new photo</br>
 		 <%= image_tag(post.attachment, :width => '150px') %></br>
