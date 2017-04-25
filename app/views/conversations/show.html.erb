@@ -1,0 +1,14 @@
+<%= @conversation.subject %>
+<% @conversation.receipts_for(current_user).each do |receipt| %>
+<div>
+	<%= image_tag(receipt.message.sender.avatar, :width => '40px')%><strong><%= receipt.message.sender.name %> : </strong>
+	<%= receipt.message.body %>
+</div>
+<% end %>
+
+<%= form_tag conversation_messages_path(@conversation), method: :post do %>
+<div>
+	<%= text_area_tag :body %>
+</div>
+<%= submit_tag :Send %>
+<% end %>

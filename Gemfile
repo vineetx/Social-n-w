@@ -61,3 +61,4 @@ gem 'active_attr', '~> 0.10.0'
 gem "figaro"
 gem "activeadmin"
 gem 'friendly_id', '~> 5.1.0'
+gem 'mailboxer'

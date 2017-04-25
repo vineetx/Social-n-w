@@ -10,6 +10,7 @@
       <% if user_signed_in? %>
         <%= link_to "Socify", root_path, class: "navbar-brand" %>
         <%= link_to "Profile", profile_path(current_user), class: "navbar-brand" %>
+        <%= link_to "Messages", conversations_path, class: "navbar-brand" %>
       <% end %>
     </div>
       <div class="collapse navbar-collapse" id="navbar-top">

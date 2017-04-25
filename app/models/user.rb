@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
          has_many :posts
+         acts_as_messageable
 
          has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
          :default_url => "missing.png"
@@ -17,6 +18,12 @@ class User < ApplicationRecord
 
       def welcome_send
         WelcomeMailer.welcome_send(self).deliver
+      end
+      
+      
+      
+      def mailboxer_email(object)
+         
       end
 
       extend FriendlyId
