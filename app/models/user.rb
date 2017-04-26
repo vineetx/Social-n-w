@@ -16,8 +16,8 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   def welcome_send
-    WelcomeMailer.welcome_send(self).deliver
-  end 
+    WelcomeWorker.perform_async(self.id)
+  end
 
   def mailboxer_email(object)
          

@@ -62,3 +62,4 @@ gem "figaro"
 gem "activeadmin"
 gem 'friendly_id', '~> 5.1.0'
 gem 'mailboxer'
+gem 'sidekiq', '~> 4.2', '>= 4.2.10'

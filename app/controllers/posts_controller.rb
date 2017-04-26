@@ -41,13 +41,15 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to root_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
+        @post.liked_by User.first
+        PostmailWorker.perform_async(@post.id)
       else
         flash[:notice] = "Post Failed."
         format.html { redirect_to root_path }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
-    @post.liked_by User.first
+
   end
 
   # PATCH/PUT /posts/1
@@ -84,4 +86,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:attachment, :content, :attachment_content_type)
     end
+
 end
