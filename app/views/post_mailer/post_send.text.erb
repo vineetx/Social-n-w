@@ -1,1 +1,6 @@
-<h1> hello</h1>
+<h1> Hello <%= @user.name %></h1>
+<p> <%= @user.name %> has posted 
+<% if @post.attachment %>
+<%= image_tag(@post.attachment, :width => '100px' ) %> </p>
+<% end %>
+<p> <%= @post.content %></p>
