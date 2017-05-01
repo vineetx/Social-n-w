@@ -1,0 +1,11 @@
+FactoryGirl.define do
+  factory :users do
+    name "John"
+    email "asd@asd.com"
+    password "zxcvbnm"
+    about "cool"
+    date_of_birth "01/01/1991"
+    avatar "app/assets/images/missing.png"
+    admin false
+  end
+end

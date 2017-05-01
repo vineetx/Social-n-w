@@ -1,65 +1,80 @@
-Hello <%= current_user.name %>
-
-<div class="new">
-	<button id="myBtn">New Post</button></br>
-</div>
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p><%= render "posts/form" %></p>
-  </div>
-</div>
-
-<div class="col-md-4">
-
-</div>
-
-<div class="col-md-4">
-	<div class="post">
-		<% if current_user.date_of_birth.day == Time.now.to_date.day && current_user.date_of_birth.month == Time.now.to_date.month %>
-        <%= image_tag('birthday.jpg', :width => '150px') %>
+<div class="container text-center">    
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="well">
+        <p><a href="<%= profile_path(current_user) %>"><%= current_user.name %></a></p>
+        <%= image_tag current_user.avatar, :class => "img-circle", :width => "65", :height => "65" %>
+      </div>
+      <div class="well">
+        <p><strong> About: </strong></p>
+        <p>
+          <%= current_user.about %>
+        </p>
+      </div>
+    </div>
+      
+    <div class="col-sm-7">
+      <div class="row">
+        <div class="col-sm-12">
+                <button id="myBtn">New Post</button></br>
+                <div id="myModal" class="modal">
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <%= render "posts/form" %>
+                  </div>
+                </div>    
+          </div>
+        </div>
+      </div>
+    
+      <% @posts.each do |post| %>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p><%= post.user.name %></p>
+           <%= image_tag post.user.avatar, :class => "img-circle", :width => "55", :height => "55" %>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+            <p>
+              <% if post.attachment? %>
+                added a new photo</br>
+                <%= image_tag(post.attachment, :width => '150px') %></br>
+              <% else %>
+                published
+              <% end %>
+              <strong><%= post.content %></strong></br>
+              <%= time_ago_in_words(post.created_at) %> ago.</br>
+              <% if post.user.id == current_user.id %>
+                <%= link_to 'Edit', edit_post_path(post) %>
+                <%= link_to 'Delete', post_path(post), method: :delete %></br>
+              <% end %>
+              <%= link_to "",{:controller =>'posts', :action =>'like',params: {post: post}}, :class=>"fa fa-thumbs-o-up"%>
+              <%= post.votes_for.size %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-sm-2 well">
+      <div class="thumbnail">
+        <p>Top Posts:</p>
+        <% @post1 = @posts.order(:votes_for.size).limit(3)%>
+        <% @post1.each do |post| %>
+        <%= image_tag(post.user.avatar, :width => '40px') %><%= post.user.name %>
+        <% if post.attachment? %>
+          added a new photo
+          <%= image_tag(post.attachment, :width => '150px') %></br>
+        <% else %>
+          published
         <% end %>
-        <strong>News Feeds</strong>
-		<% @posts.each do |post| %>
-		<div class="poosstt">
-			<%= image_tag(post.user.avatar, :width => '40px') %> <%= link_to post.user.name, profile_path(post.user) %>
-			<% if post.attachment? %>
-		 		added a new photo</br>
-		 		<%= image_tag(post.attachment, :width => '150px') %></br>
-			<% else %>
-				published
-			<% end %>
-			<strong><%= post.content %></strong></br>
-		 	<%= time_ago_in_words(post.created_at) %> ago.</br>
-			<% if post.user.id == current_user.id %>
-				<%= link_to 'Edit', edit_post_path(post) %>
-				<%= link_to 'Delete', post_path(post), method: :delete %></br>
-			<% end %>
-			<%= link_to "",{:controller =>'posts', :action =>'like',params: {post: post}}, :class=>"fa fa-thumbs-o-up"%>
-			<%= post.votes_for.size %>
-		</div></br>
-		<% end %>
-	</div>
-</div>
-
-<div class="col-d-4">
-	<div class="row">
-		
-		<strong>Top Posts</strong></br>
-		<% @post1 = @posts.order(:votes_for.size).limit(3)%>
-		<% @post1.each do |post| %>
-		<div class="scrollmenu">
-			<%= image_tag(post.user.avatar, :width => '40px') %> <%= post.user.name %>
-			<% if post.attachment? %>
-				 added a new photo</br>
-				 <%= image_tag(post.attachment, :width => '150px') %></br>
-			<% else %>
-				published
-			<% end %>
-			<strong><%= post.content %></strong></br>
-			<strong> Likes : </strong><%= post.votes_for.size %></br>
-			<%= time_ago_in_words(post.created_at) %> ago.</br>
-			<% end %>
-		</div>
-	</div>
+        <p><strong><%= post.content %></strong></p>
+        <p><strong>Paris</strong></p>
+        <p><%= time_ago_in_words(post.created_at) %> ago.</p>
+        <% end %>
+      </div>      
+    </div>
+  </div>
 </div>
