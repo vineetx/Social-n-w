@@ -28,9 +28,11 @@
         <li class="active"><a href="<%= root_path %>">Home</a></li>
         <li><a href="<%= conversations_path %>">Messages</a></li>
       </ul>
+      <% if user_signed_in? %>
         <%= form_for(Search.new, url: home_search_path, method: :post, class: "navbar-form navbar-right"  ) do |f| %>
         <%= f.text_field :Search %>
         <%= f.submit :search %>
+        <% end %>
         <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

@@ -1,16 +1,9 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-	include Devise::Test::ControllerHelpers
-	include FactoryGirl::Syntax::Methods
-
-	def setup
-		user = User.last
-		sign_in user
-	end
-   test "presence of image" do
+	#include Devise::Test::ControllerHelpers
+	test "presence of content" do
    		post = Post.new
-   		post.content = "wassup"
      	refute post.save
    end
 end

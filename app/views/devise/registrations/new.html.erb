@@ -41,6 +41,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div>
+    <%= f.label :humanizer_answer, @user.humanizer_question %>
+    <%= f.text_field :humanizer_answer %>
+    <%= f.hidden_field :humanizer_question_id %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

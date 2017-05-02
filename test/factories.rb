@@ -5,7 +5,6 @@ FactoryGirl.define do
     password "zxcvbnm"
     about "cool"
     date_of_birth "01/01/1991"
-    avatar "app/assets/images/missing.png"
     admin false
   end
 end
