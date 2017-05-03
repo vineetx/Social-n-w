@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   after_create :welcome_send
-  has_many :posts
+  has_many :posts, :dependent => :destroy
   acts_as_messageable
   acts_as_followable
   acts_as_follower
   include Humanizer
-  require_human_on :create
+  # require_human_on :create
          
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
   :default_url => "missing.png"

@@ -66,6 +66,6 @@ gem 'sidekiq', '~> 4.2', '>= 4.2.10'
 gem 'factory_girl'
 gem 'humanizer'
 
-group :test do
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
-end
+# group :test do
+#   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+# end
